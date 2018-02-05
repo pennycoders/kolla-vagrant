@@ -1,0 +1,386 @@
+{
+  "host_disks_folder_path": "/media/apica/Store/disks",
+  "machines": {
+    "control1": {
+      "disk_size_gb": 20,
+      "primary": true,
+      "check_for_update": true,
+      "box": "debian/stretch64",
+      "gui": false,
+      "networks": [
+        {
+          "type": "private_network",
+          "options": {
+            "virtualbox__intnet": false,
+            "ip": "10.55.1.3"
+          }
+        },
+        {
+          "type": "private_network",
+          "options": {
+            "virtualbox__intnet": "external1",
+            "ip": "10.56.1.2"
+          }
+        },
+        {
+          "type": "private_network",
+          "options": {
+            "virtualbox__intnet": "storage",
+            "ip": "10.57.1.3"
+          }
+        }
+      ],
+      "forwarded_ports": [
+        {
+          "host": 3080,
+          "guest": 80,
+          "guest_ip": "10.55.1.3"
+        },
+        {
+          "host": 3081,
+          "guest": 80,
+          "guest_ip": "10.55.1.254"
+        },
+        {
+          "host": 8181,
+          "guest": 8181,
+          "guest_ip": "10.55.1.3"
+        },
+        {
+          "host": 8182,
+          "guest": 8181,
+          "guest_ip": "10.55.1.254"
+        }
+      ],
+      "vmConfig": {
+        "gui": false,
+        "memory": 10240,
+        "cpus": 8,
+        "customizations": [
+          {
+            "cmd": "modifyvm",
+            "param": "--cpuexecutioncap",
+            "value": "50"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--draganddrop",
+            "value": "bidirectional"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--clipboard",
+            "value": "bidirectional"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--nicpromisc1",
+            "value": "allow-all"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--nicpromisc2",
+            "value": "allow-all"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--nicpromisc3",
+            "value": "allow-all"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--nicpromisc4",
+            "value": "allow-all"
+          }
+        ],
+        "disks": [
+          {
+            "size_mb": 30000,
+            "name": "DOCKER_STORAGE",
+            "type": "hdd"
+          }
+        ]
+      },
+      "synced_folders": [
+        {
+          "host": "./provisioning_scripts",
+          "guest": "/provisioning"
+        },
+        {
+          "host": "/media/apica/Store/docker-store/control1",
+          "guest": "/containers"
+        }
+      ]
+    },
+    "compute1": {
+      "disk_size_gb": 20,
+      "primary": true,
+      "check_for_update": true,
+      "box": "debian/stretch64",
+      "gui": false,
+      "networks": [
+        {
+          "type": "private_network",
+          "options": {
+            "virtualbox__intnet": false,
+            "ip": "10.55.1.4"
+          }
+        },
+        {
+          "type": "private_network",
+          "options": {
+            "virtualbox__intnet": "external1",
+            "ip": "10.56.1.3"
+          }
+        },
+        {
+          "type": "private_network",
+          "options": {
+            "virtualbox__intnet": "storage",
+            "ip": "10.57.1.4"
+          }
+        }
+      ],
+      "forwarded_ports": [],
+      "vmConfig": {
+        "gui": false,
+        "memory": 8192,
+        "cpus": 4,
+        "customizations": [
+          {
+            "cmd": "modifyvm",
+            "param": "--cpuexecutioncap",
+            "value": "50"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--draganddrop",
+            "value": "bidirectional"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--clipboard",
+            "value": "bidirectional"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--nicpromisc1",
+            "value": "allow-all"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--nicpromisc2",
+            "value": "allow-all"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--nicpromisc3",
+            "value": "allow-all"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--nicpromisc4",
+            "value": "allow-all"
+          }
+        ],
+        "disks": [
+          {
+            "size_mb": 51200,
+            "name": "DOCKER_STORAGE",
+            "type": "hdd"
+          }
+        ]
+      },
+      "synced_folders": [
+        {
+          "host": "./provisioning_scripts",
+          "guest": "/provisioning"
+        },
+        {
+          "host": "/media/apica/Store/docker-store/compute1",
+          "guest": "/containers"
+        }
+      ]
+    },
+    "compute2": {
+      "disk_size_gb": 20,
+      "primary": true,
+      "check_for_update": true,
+      "box": "debian/stretch64",
+      "gui": false,
+      "networks": [
+        {
+          "type": "private_network",
+          "options": {
+            "virtualbox__intnet": false,
+            "ip": "10.55.1.5"
+          }
+        },
+        {
+          "type": "private_network",
+          "options": {
+            "virtualbox__intnet": "external1",
+            "ip": "10.56.1.4"
+          }
+        },
+        {
+          "type": "private_network",
+          "options": {
+            "virtualbox__intnet": "storage",
+            "ip": "10.57.1.5"
+          }
+        }
+      ],
+      "forwarded_ports": [],
+      "vmConfig": {
+        "gui": false,
+        "memory": 8192,
+        "cpus": 4,
+        "customizations": [
+          {
+            "cmd": "modifyvm",
+            "param": "--cpuexecutioncap",
+            "value": "50"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--draganddrop",
+            "value": "bidirectional"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--clipboard",
+            "value": "bidirectional"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--nicpromisc1",
+            "value": "allow-all"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--nicpromisc2",
+            "value": "allow-all"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--nicpromisc3",
+            "value": "allow-all"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--nicpromisc4",
+            "value": "allow-all"
+          }
+        ],
+        "disks": [
+          {
+            "size_mb": 51200,
+            "name": "DOCKER_STORAGE",
+            "type": "hdd"
+          }
+        ]
+      },
+      "synced_folders": [
+        {
+          "host": "./provisioning_scripts",
+          "guest": "/provisioning"
+        },
+        {
+          "host": "/media/apica/Store/docker-store/compute2",
+          "guest": "/containers"
+        }
+      ]
+    },
+    "jump": {
+      "disk_size_gb": 20,
+      "primary": true,
+      "check_for_update": true,
+      "box": "debian/stretch64",
+      "gui": false,
+      "networks": [
+        {
+          "type": "private_network",
+          "options": {
+            "virtualbox__intnet": false,
+            "ip": "10.55.1.2"
+          }
+        },
+        {
+          "type": "private_network",
+          "options": {
+            "virtualbox__intnet": "external1",
+            "ip": "10.56.1.1"
+          }
+        },
+        {
+          "type": "private_network",
+          "options": {
+            "virtualbox__intnet": "storage",
+            "ip": "10.57.1.2"
+          }
+        }
+      ],
+      "forwarded_ports": [],
+      "vmConfig": {
+        "gui": false,
+        "memory": 512,
+        "cpus": 1,
+        "customizations": [
+          {
+            "cmd": "modifyvm",
+            "param": "--cpuexecutioncap",
+            "value": "50"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--draganddrop",
+            "value": "bidirectional"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--clipboard",
+            "value": "bidirectional"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--nicpromisc1",
+            "value": "allow-all"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--nicpromisc2",
+            "value": "allow-all"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--nicpromisc3",
+            "value": "allow-all"
+          },
+          {
+            "cmd": "modifyvm",
+            "param": "--nicpromisc4",
+            "value": "allow-all"
+          }
+        ],
+        "disks": [
+          {
+            "size_mb": 20480,
+            "name": "DOCKER_STORAGE",
+            "type": "hdd"
+          }
+        ]
+      },
+      "synced_folders": [
+        {
+          "host": "./provisioning_scripts",
+          "guest": "/provisioning"
+        },
+        {
+          "host": "/media/apica/Store/docker-store/jump",
+          "guest": "/containers"
+        }
+      ]
+    }
+  }
+}

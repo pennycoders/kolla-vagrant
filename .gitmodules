@@ -1,0 +1,3 @@
+[submodule "docs"]
+	path = docs
+	url = ssh://git@bitbucket.1and1.org/dd/docs-openstack.git
