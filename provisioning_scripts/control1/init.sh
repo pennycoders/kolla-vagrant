@@ -33,11 +33,11 @@ df -h
 echo "HDD STUFF====================================================================="
 
 #Docker stuff
-apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
-apt-get update
-apt-get install -y docker-ce
+#apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+#curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+#add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+#apt-get update
+#apt-get install -y docker-ce
 apt-get install -y net-tools
 usermod -aG docker vagrant
 
@@ -46,7 +46,7 @@ wget -qO- https://bootstrap.pypa.io/get-pip.py | python -
 pip install -U docker
 
 # External MariaDB
-docker run --restart always -d --name mariadb -v `pwd`/my.cnf:/etc/mysql/my.cnf:ro --net host -e MYSQL_ROOT_PASSWORD=toor -d mariadb:10.1.25 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+#docker run -d --restart always --name mariadb --net host -e MYSQL_ROOT_PASSWORD=toor -d mariadb:10.1.25 --bind-address=10.55.1.3 --max-connections=100000
 #docker exec -it mariadb mysql -u root -ptoor -h localhost -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'toor' WITH GRANT OPTION;"
 #docker exec -it mariadb mysql -u root -ptoor -h localhost -e "CREATE USER 'haproxy'@'%';"
 #docker exec -it mariadb mysql -u root -ptoor -h localhost -e "FLUSH PRIVILEGES;"

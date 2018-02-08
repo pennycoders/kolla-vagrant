@@ -6,7 +6,6 @@ hosts=(
   jump
   control1
   compute1
-  compute2
 )
 
 for i in ${!hosts[@]}; do

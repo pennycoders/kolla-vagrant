@@ -11,17 +11,17 @@
 # Valid options are [ COPY_ONCE, COPY_ALWAYS ]
 #config_strategy: "COPY_ALWAYS"
 
-# Valid options are [ centos, oraclelinux, ubuntu ]
-#kolla_base_distro: "centos"
+# Valid options are ['centos', 'debian', 'oraclelinux', 'rhel', 'ubuntu']
+kolla_base_distro: "centos"
 
 # Valid options are [ binary, source ]
 kolla_install_type: "source"
 
 # Valid option is Docker repository tag
-openstack_release: "pike"
+openstack_release: "master"
 
 # Location of configuration overrides
-#node_custom_config: "/etc/kolla/config"
+node_custom_config: "/etc/kolla/config"
 
 # This should be a VIP, an unused IP on your network that will float between
 # the hosts running keepalived for high-availability. If you want to run an
@@ -133,16 +133,19 @@ neutron_external_interface: "eth2"
 # Valid options are [ True, False ]
 #openstack_logging_debug: "False"
 
-# Valid options are [ novnc, spice, rdp ]
+# Valid options are [ none, novnc, spice, rdp ]
 #nova_console: "novnc"
 
 # OpenStack services can be enabled or disabled with these options
 #enable_aodh: "no"
 #enable_barbican: "no"
+#enable_blazar: "no"
 #enable_ceilometer: "no"
 enable_central_logging: "no"
 enable_ceph: "no"
+#enable_ceph_mds: "no"
 enable_ceph_rgw: "no"
+#enable_ceph_nfs: "no"
 #enable_chrony: "no"
 enable_cinder: "no"
 #enable_cinder_backup: "yes"
@@ -185,12 +188,15 @@ enable_heat: "yes"
 #enable_hyperv: "no"
 #enable_influxdb: "no"
 #enable_ironic: "no"
+#enable_ironic_pxe_uefi: "no"
 #enable_karbor: "no"
 #enable_kuryr: "no"
 enable_magnum: "yes"
-enable_manila: "yes"
+#enable_manila: "no"
 #enable_manila_backend_generic: "no"
 #enable_manila_backend_hnas: "no"
+#enable_manila_backend_cephfs_native: "no"
+#enable_manila_backend_cephfs_nfs: "no"
 #enable_mistral: "no"
 #enable_mongodb: "no"
 #enable_murano: "no"
@@ -202,6 +208,7 @@ enable_neutron_dvr: "yes"
 #enable_neutron_qos: "no"
 #enable_neutron_agent_ha: "no"
 #enable_neutron_vpnaas: "no"
+#enable_neutron_sriov: "no"
 #enable_neutron_sfc: "no"
 #enable_nova_fake: "no"
 #enable_nova_serialconsole_proxy: "no"
@@ -224,6 +231,7 @@ enable_neutron_dvr: "yes"
 #enable_tacker: "no"
 #enable_tempest: "no"
 #enable_trove: "no"
+#enable_vitrage: "no"
 #enable_vmtp: "no"
 #enable_watcher: "no"
 #enable_zun: "no"
@@ -349,6 +357,10 @@ nova_compute_virt_type: "qemu"
 #############################
 #horizon_backend_database: "{{ enable_murano | bool }}"
 
+#############################
+# Ironic options
+#############################
+#ironic_dnsmasq_dhcp_range:
 
 ######################################
 # Manila - Shared File Systems Options
@@ -410,18 +422,3 @@ tempest_floating_network_name:
 #xenserver_himn_ip:
 #xenserver_username:
 #xenserver_connect_protocol:
-
-enable_mariadb: False
-database_user: root
-database_port: 3306
-database_password: toor
-use_external_mariadb: True
-
-horizon_keystone_multidomain: True
-horizon_keystone_domain_choices:
-  default: default
-  Default One: default_one
-  Default Two: default_two
-  Default Three: default_three
-
-OPENSTACK_KEYSTONE_FEDERATION_MANAGEMENT: True

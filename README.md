@@ -1,9 +1,10 @@
 ### Prerequisites:
 
 1. Oracle VirtualBox - [Download](https://www.virtualbox.org/wiki/Downloads)
-2. Vagrant - [Info/Download](https://www.vagrantup.com/downloads.html)
-3. Vagrant vbguest plugin - [Info/Download](https://github.com/dotless-de/vagrant-vbguest)
-4. ruby json module - run the following commands to install:
+2. Ruby
+3. Vagrant - [Info/Download](https://www.vagrantup.com/downloads.html)
+4. Vagrant vbguest plugin - [Info/Download](https://github.com/dotless-de/vagrant-vbguest)
+5. ruby json module - run the following commands to install:
 ```bash
 sudo apt-get install ruby-dev
 sudo gem install json --no-ri --no-rdoc

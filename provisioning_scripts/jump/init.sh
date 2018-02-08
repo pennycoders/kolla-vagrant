@@ -37,7 +37,7 @@ apt-get install -y apt-transport-https ca-certificates curl software-properties-
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 apt-get update
-apt-get install -y docker-ce
+#apt-get install -y docker-ce
 apt-get install -y net-tools
 usermod -aG docker vagrant
 
@@ -66,9 +66,13 @@ sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
 apt-get update
 apt-get install -y curl python-pip python-dev libffi-dev gcc libssl-dev python-selinux git
 wget -qO- https://bootstrap.pypa.io/get-pip.py | python -
-pip install -U git+git://github.com/ansible/ansible.git@devel
+pip install git+git://github.com/ansible/ansible.git@devel --upgrade
 apt-get install -y ntp
-pip install git+git://github.com/openstack/kolla-ansible.git@stable/pike --upgrade
+pip install git-review --upgrade
+git clone https://git.openstack.org/openstack/kolla-ansible /root/kolla-ansible
+cd /root/kolla-ansible
+#git remote add gerrit https://<your_gerrit_username>@review.openstack.org/openstack/kolla-ansible.git
+pip install ./ --upgrade
 rm -Rf /etc/kolla
 mkdir -p /etc/kolla
 cp -R /provisioning/kolla/globals.yml /etc/kolla/globals.yml
@@ -87,14 +91,12 @@ ips=(
   "10.55.1.2"
   "10.55.1.3"
   "10.55.1.4"
-  "10.55.1.5"
 )
 
 hostnames=(
   "jump"
   "control1"
   "compute1"
-  "compute2"
 )
 
 for i in "${!ips[@]}"; do
@@ -117,7 +119,7 @@ for i in "${!ips[@]}"; do
   fi
 done
 
-for i in "${!ips[@]}"; do
-  docker-machine rm -f ${hostnames[${i}]}
-  docker-machine create --driver generic --engine-opt host=fd:// --generic-ssh-key=${HOME}/.ssh/id_rsa --generic-ssh-user=vagrant --generic-ip-address=${ips[${i}]} ${hostnames[${i}]}
-done
+#for i in "${!ips[@]}"; do
+#  docker-machine rm -f ${hostnames[${i}]}
+#  docker-machine create --driver generic --engine-opt host=fd:// --generic-ssh-key=${HOME}/.ssh/id_rsa --generic-ssh-user=vagrant --generic-ip-address=${ips[${i}]} ${hostnames[${i}]}
+#done
