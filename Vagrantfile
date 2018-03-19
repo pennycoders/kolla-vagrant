@@ -3,7 +3,7 @@
 
 require 'json'
 
-unless Vagrant.has_plugin?('vagrant-vbguest') and Vagrant.has_plugin?('vagrant-disksize')
+unless Vagrant.has_plugin?('vagrant-vbguest') and Vagrant.has_plugin?('vagrant-disksize') and Vagrant.has_plugin?('landrush')
   unless Vagrant.has_plugin?('vagrant-vbguest')
     puts 'Installing vbguest plugin....'
     %x[vagrant plugin install vagrant-vbguest]
@@ -13,6 +13,12 @@ unless Vagrant.has_plugin?('vagrant-vbguest') and Vagrant.has_plugin?('vagrant-d
     puts 'Installing disksize plugin.....'
     %x[vagrant plugin install vagrant-disksize]
   end
+  
+  unless Vagrant.has_plugin?('landrush')
+    puts 'Installing landrush plugin.....'
+    %x[vagrant plugin install landrush]
+  end
+  
   puts 'The plugins have been installed successfully. Please run vagrant up one more time'
   abort
 end
