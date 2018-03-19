@@ -44,6 +44,7 @@ if defined? settings and settings['machines'].any?
   settings['machines'].each { |name, settings|
       Vagrant.configure("2") do |config|
          config.vm.define "#{name}", primary: settings['primary'] do |vmConfig|
+             vmConfig.landrush.enabled = true
              vmConfig.vm.box = "#{settings['box']}"
              vmConfig.vm.box_check_update = settings['box_check_update']
 
